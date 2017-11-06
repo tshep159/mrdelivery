@@ -1,0 +1,28 @@
+
+<div class="product-block" style="background:#2aabd2;">
+<h1> Please Pick Orders And deliver Thank You</h1>
+<div class="row">
+<div class="col-lg-4 col-md-6 mb-4" ng-repeat="product in orders">
+      <div class="card h-100">
+        <a href="#"><img class="card-img-top" ng-src="{{rest.image}}" alt="Restaurant Pic"/></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="#">{{rest.name}}</a>
+          </h4>
+            <h5>Address</h5>
+           <h5 class="card-title">  Order ID: {{product.orderDetailsId}}</h5>
+            <p class="card-text text">User Email: {{product.user_id}}</p>
+            <p class="card-text price">Order Price {{product.price}}</p>
+            <p class="card-text text">Date : {{product.dateCreated}}</p>
+            <p class="card-text text">Status :{{product.status}}</p>
+            <p class="card-text text">Type : {{product.type}}</p>
+            <p class="card-text text">Product Name :{{product.name}}</p>
+            </div>
+        <div class="card-footer">
+            <small class="text-muted"><center><button class="btn btn-success" ng-click="addToCart(product)" >View Order</button></center></small>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+

@@ -1,0 +1,93 @@
+
+       
+  <style>
+    .header {
+	width: 40%;
+	margin: 50px auto 0px;
+	color: white;
+	background: #7926c1;
+	text-align: center;
+	border: 1px solid #B0C4DE;
+	border-bottom: none;
+	border-radius: 10px 10px 0px 0px;
+	padding: 20px;
+    }
+</style>     
+<center>
+
+
+        <form ng-controller="registerController"  ng-submit="register()"> 
+    <div class="header">
+    <h2>Sign Up</h2>
+
+
+   
+    
+    </div>
+    <label for="usr">Fist Name  </label>
+
+    <input type="text" ng-model="cus.firstName" class="form-control" id="usr" style="width: 40%;text-align:center;"/>
+    <label for="sur">Last Name  </label>
+    <input type="text" ng-model="cus.lastName" class="form-control" id="sur" style="width: 40%;text-align:center;"/>
+
+    <label>Email</label>
+    <input type="email" ng-model="cus.email" style="width: 40%;text-align:center;height: 30px" placeholder="person@email.com" class="form-control" id="email"/>
+
+    <label for="pass">Cell   </label>
+    <input type="cell" ng-model="cus.contactNumber" style="width: 40%;text-align:center;" class="form-control" id="pass"/>
+
+    <label for="ccell">Confirm Cell   </label>
+    <input type="text" ng-model="cus.ccell" style="width: 40%;text-align:center;" class="form-control" id="ccell"/>
+    <br/><br/>
+    
+    <input type="submit" class="btn "  name="Register" style="width: 25%;background: #7926c1; align:left;" /><a href="http://localhost:8080/#!/login">Already have an account??</a>
+</form>
+
+{{mgs}}
+</center>
+
+
+
+<div class="col-lg-offset-2 col-lg-offset-2">
+
+<div class="panel-heading"><h2>Customers</h2></div>
+<div class="panel-body">
+<table class="table table-striped"  >
+<thead>
+    <tr>
+        <th> Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Number</th>
+          <th>Password</th>
+        <th>Role</th>
+         <th>Active</th>
+
+
+        <th>Action</th>
+        <th style="width: 90px"></th> 
+    </tr>
+</thead>
+<tbody>
+    <tr ng-repeat="u in users">
+        <td>{{u.id}}</td>
+        <td>{{u.firstName}}</td>
+        <td>{{u.lastName}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.contactNumber}}</td>
+        <td>{{u.password}}</td>
+        <td>{{u.role}}</td>
+        <td>{{u.enabled}}</td>
+        <td>
+            <button class="btn btn-danger" ng-click="delete($index)" > Delete </button>
+            <button class="btn btn-primary" ng-click="updateUserInformation()">Edit</button>
+
+        </td>
+    </tr> 
+</tbody>
+</table>
+</div>
+</div>
+
+

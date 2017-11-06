@@ -1,0 +1,97 @@
+<div class="cart-wrapper">
+	<a class="cart-anchor" href="/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+		<span ng-bind="cart.getTotalCount()"></span> items, <span ng-bind="cart.getTotalPrice() | currency">
+	</a>
+</div>
+
+<div class="cart">
+
+	<div class="wrapper">
+
+
+		<div class="left">
+			
+			<p ng-hide="cart.getTotalCount() > 0">
+				Your cart is empty.
+			</p>
+
+			<div class="item-in-cart" ng-repeat="item in cart.items | orderBy:'name'">
+
+				<div class="left">
+					<img ng-src="img/products/{{item.sku}}.jpg" alt="{{item.name}}" />
+				</div>
+
+				<div class="center">
+					<a href="#/products/{{item.sku}}">
+						<span class="name" ng-bind="item.name"></span>
+					</a>
+				</div>
+
+				<div class="right">
+
+					<div class="quantity">
+						<input
+							type="tel" 
+							ng-model="item.quantity" 
+							ng-change="cart.saveItems()" />
+						<button 
+							type="button"
+							ng-disabled="item.quantity >= 1000"
+							ng-click="cart.addItem(item.sku, item.name, item.price, +1)">+</button>
+						<button 
+							type="button" 
+							ng-disabled="item.quantity <= 1"
+							ng-click="cart.addItem(item.sku, item.name, item.price, -1)">-</button>
+					</div>
+
+					<div class="price-wrapper">
+						<b ng-bind="item.price * item.quantity | currency"></b>
+						<a href="" ng-click="cart.addItem(item.sku, item.name, item.price, -10000000)" >remove</a>
+					</div>
+					
+				</div>
+
+			</div>
+
+			<div class="total-wrapper" ng-hide="cart.getTotalCount() <= 0">
+				<b ng-bind="cart.getTotalPrice() | currency"></b>
+			</div>
+
+
+		</div>
+
+
+
+		<div class="right">
+
+			<button
+				class="btn btn-primary"
+				ng-click="cart.checkout('PayPal')"
+				ng-disabled="cart.getTotalCount() < 1">
+				<i class="icon-ok icon-white" /> check out using PayPal
+			</button>
+
+			<form class="form-stripe"></form>
+			
+		</div>
+
+
+		
+	</div>
+
+	<div class="products seeded">
+
+		<div class="item" ng-repeat="product in store.products | orderBy:'name' | filter:search">
+			<a class="img-anchor" href="/products/{{product.sku}}">
+				<img ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}" />
+			</a>
+			<a class="name" href="/products/{{product.sku}}" ng-bind="product.name"></a>
+			<span class="price" ng-bind="product.price | currency"></span>
+		</div>
+
+	</div>
+
+
+
+
+</div>
